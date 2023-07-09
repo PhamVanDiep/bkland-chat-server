@@ -73,6 +73,12 @@ io.on('connection', (socket) => {
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
+
+  socket.on("newRep", (data) => {
+    socket
+      .to("newRepId")
+      .emit("newRepReceiver", data);
+  })
 });
 
 httpServer.listen(port, () => {
